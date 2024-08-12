@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menú del Hospital</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Menú del Hospital</h1>
+        <div id="menu">
+            <p>Seleccione una opción del menú:</p>
+            <ul>
+                <li>1. Donde está el hospital</li>
+                <li>2. Cómo puedo sacar un turno</li>
+                <li>3. Horarios de los doctores</li>
+                <li>4. Cuarta pregunta</li>
+                <li>5. Quinta pregunta</li>
+                <li>6. Comunicarse a través del número del hospital</li>
+            </ul>
+            <input type="number" id="opcion" placeholder="Ingrese una opción del 1 al 6">
+            <button onclick="procesarOpcion()">Enviar</button>
+        </div>
+
+        <div id="respuesta"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
