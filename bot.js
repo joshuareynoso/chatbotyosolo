@@ -1,133 +1,127 @@
 function Menu() {
     console.log("//////Menu//////");
-    console.log("1. Donde esta el hospital");
-    console.log("2. Como puedo sacar un turno");
-    console.log("3. Horarios de los doctores");
-    console.log("4. Cuarta pregunta");
-    console.log("5. Quinta pregunta");
-    console.log("/// Si tus dudas no son estas toque 6 para comunicarse a través del número del hospital ///");
+    console.log("1 Donde esta el hospital");
+    console.log("2 como puedo sacar un turno");
+    console.log("3 horarios de los doctores");
+    console.log("4 cuarta pregunta");
+    console.log("5 quinta pregunta");
+    console.log("/// si tus dudas no son estas toque 6 para comunicarse atraves del numero del hospital///");
+}
+
+function ejecutarMenu(Opciones, Opciones2, volver) {
+    if (Opciones === "1") {
+        console.log("Hospital Municipal La Falda, 13 de Diciembre 596, X5172 La Falda, Córdoba");
+        if (Opciones2 === "7") {
+            Menu();
+            return "continuar";
+        }
+        if (Opciones2 === "8") {
+            console.log("Número del hospital: 03548 42-5824");
+            if (volver === "9") {
+                return "continuar";
+            } else {
+                console.log("Fin de la conversación");
+                return "fin";
+            }
+        } else {
+            console.log("Fin de la conversación");
+            return "fin";
+        }
+    }
+
+    if (Opciones === "2") {
+        console.log("Puedes ingresar el siguiente link donde te van a explicar cómo sacar un turno.");
+        if (Opciones2 === "7") {
+            return "continuar";
+        }
+        if (Opciones2 === "8") {
+            console.log("Número del hospital: 03548 42-5824");
+            if (volver === "9") {
+                return "continuar";
+            } else {
+                console.log("Fin de la conversación");
+                return "fin";
+            }
+        } else {
+            console.log("Fin de la conversación");
+            return "fin";
+        }
+    }
+
+    if (Opciones === "3") {
+        console.log("En este link mostraremos los horarios de los doctores y qué día están.");
+        if (Opciones2 === "7") {
+            return "continuar";
+        }
+        if (Opciones2 === "8") {
+            console.log("Número del hospital: 03548 42-5824");
+            if (volver === "9") {
+                return "continuar";
+            } else {
+                console.log("Fin de la conversación");
+                return "fin";
+            }
+        } else {
+            console.log("Fin de la conversación");
+            return "fin";
+        }
+    }
+
+    if (Opciones === "4") {
+        console.log("Horario de atención en el hospital son 6:00 hasta las 24:00");
+        if (Opciones2 === "7") {
+            Menu();
+            return "continuar";
+        }
+        if (Opciones2 === "8") {
+            console.log("Número del hospital: 03548 42-5824");
+            if (volver === "9") {
+                return "continuar";
+            } else {
+                console.log("Fin de la conversación");
+                return "fin";
+            }
+        } else {
+            console.log("Fin de la conversación");
+            return "fin";
+        }
+    }
+
+    if (Opciones === "5") {
+        console.log("Aceptamos obras sociales");
+        if (Opciones2 === "7") {
+            Menu();
+            return "continuar";
+        }
+        if (Opciones2 === "8") {
+            console.log("Número del hospital: 03548 42-5824");
+            if (volver === "9") {
+                return "continuar";
+            } else {
+                console.log("Fin de la conversación");
+                return "fin";
+            }
+        } else {
+            console.log("Fin de la conversación");
+            return "fin";
+        }
+    }
+
+    if (!["1", "2", "3", "4", "5"].includes(Opciones)) {
+        console.log("Esta opción no está en el menú, por favor elige una de las opciones:");
+        return "continuar";
+    } else {
+        console.log("Número del hospital: 03548 42-5824");
+        return "fin";
+    }
 }
 
 Menu();
 
-while (true) {
-    const Opciones = parseInt(prompt("Ingrese una opción del 1 al 6:"));
+// Ejemplo de cómo podrías llamar la función con valores predefinidos
+let resultado;
+do {
+    resultado = ejecutarMenu("1", "7", "9");
+} while (resultado === "continuar");
 
-    if (Opciones === 1) {
-        console.log("Hospital Municipal La Falda, 13 de Diciembre 596, X5172 La Falda, Córdoba");
-        const Opciones2 = parseInt(prompt("Si quiere preguntar algo más presione 7 o si su respuesta no fue la información que esperabas, puedes comunicarte con el hospital de La Falda tocando 8:"));
-
-        if (Opciones2 === 7) {
-            Menu();
-            continue;
-        }
-
-        if (Opciones2 === 8) {
-            console.log("Número del hospital: 03548 42-5824");
-            const volver = parseInt(prompt("Si quiere preguntar algo más presione 9:"));
-            if (volver === 9) {
-                continue;
-            } else {
-                console.log("Fin de la conversación");
-                break;
-            }
-        } else {
-            console.log("Fin de la conversación");
-            break;
-        }
-
-    } else if (Opciones === 2) {
-        console.log("Puedes ingresar el siguiente link donde te explicarán cómo sacar un turno");
-        const Opciones2 = parseInt(prompt("Si quiere preguntar algo más presione 7 o si su respuesta no fue la información que esperabas, puedes comunicarte con el hospital de La Falda tocando 8:"));
-
-        if (Opciones2 === 7) {
-            continue;
-        }
-
-        if (Opciones2 === 8) {
-            console.log("Número del hospital: 03548 42-5824");
-            const volver = parseInt(prompt("Si quiere preguntar algo más presione 9:"));
-            if (volver === 9) {
-                continue;
-            } else {
-                console.log("Fin de la conversación");
-                break;
-            }
-        } else {
-            console.log("Fin de la conversación");
-            break;
-        }
-
-    } else if (Opciones === 3) {
-        console.log("En este link mostraremos los horarios de los doctores y qué día están");
-        const Opciones2 = parseInt(prompt("Si quiere preguntar algo más presione 7 o si su respuesta no fue la información que esperabas, puedes comunicarte con el hospital de La Falda tocando 8:"));
-
-        if (Opciones2 === 7) {
-            continue;
-        }
-
-        if (Opciones2 === 8) {
-            console.log("Número del hospital: 03548 42-5824");
-            const volver = parseInt(prompt("Si quiere preguntar algo más presione 9:"));
-            if (volver === 9) {
-                continue;
-            } else {
-                console.log("Fin de la conversación");
-                break;
-            }
-        } else {
-            console.log("Fin de la conversación");
-            break;
-        }
-
-    } else if (Opciones === 4) {
-        console.log("El horario de atención en el hospital es de 6:00 a 24:00");
-        const Opciones2 = parseInt(prompt("Si quiere preguntar algo más presione 7 o si su respuesta no fue la información que esperabas, puedes comunicarte con el hospital de La Falda tocando 8:"));
-
-        if (Opciones2 === 7) {
-            Menu();
-            continue;
-        }
-
-        if (Opciones2 === 8) {
-            console.log("Número del hospital: 03548 42-5824");
-            const volver = parseInt(prompt("Si quiere preguntar algo más presione 9:"));
-            if (volver === 9) {
-                continue;
-            } else {
-                console.log("Fin de la conversación");
-                break;
-            }
-        } else {
-            console.log("Fin de la conversación");
-            break;
-        }
-
-    } else if (Opciones === 5) {
-        console.log("Aceptamos obras sociales");
-        const Opciones2 = parseInt(prompt("Si quiere preguntar algo más presione 7 o si su respuesta no fue la información que esperabas, puedes comunicarte con el hospital de La Falda tocando 8:"));
-
-        if (Opciones2 === 7) {
-            Menu();
-            continue;
-        }
-
-        if (Opciones2 === 8) {
-            console.log("Número del hospital: 03548 42-5824");
-            const volver = parseInt(prompt("Si quiere preguntar algo más presione 9:"));
-            if (volver === 9) {
-                continue;
-            } else {
-                console.log("Fin de la conversación");
-                break;
-            }
-        } else {
-            console.log("Fin de la conversación");
-            break;
-        }
-
-    } else {
-        console.log("Esta opción no está en el menú. Por favor, elija una de las opciones:");
-        break;
-    }
-}
+console.log("FIN");

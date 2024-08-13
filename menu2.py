@@ -11,18 +11,18 @@ def Menu():
 
 Menu() 
 while True:
-        Opciones=int(input("ingrese una opcion del 1 al 6  :"))
-        if Opciones== 1:
+        Opciones=(input("ingrese una opcion del 1 al 6  :"))
+        if Opciones== "1":
             print("Hospital Municipal La Falda, 13 de Diciembre 596, X5172 La Falda, Córdoba")
-            Opciones2=int(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
-            if Opciones2==7: 
+            Opciones2=(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
+            if Opciones2=="7": 
                 Menu()
                 continue
             
-            if Opciones2 ==8:
+            if Opciones2 =="8":
                 print("Numero del hospital: 03548 42-5824")
-                volver=int(input("si quiere preguntar algo mas presione 9 :"))
-                if volver==9:
+                volver=(input("si quiere preguntar algo mas presione 9 :"))
+                if volver=="9":
                     continue
                 else:
                     print("Fin de la comersacion")
@@ -32,16 +32,16 @@ while True:
                 break
         
     
-        if Opciones== 2:
+        if Opciones== "2":
             print("puedes ingresar el sigiente likg donde te van a explicar como sacr un turno")
-            Opciones2=int(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
-            if Opciones2==7: 
+            Opciones2=(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
+            if Opciones2=="7": 
                 continue
             
-            if Opciones2 ==8:
+            if Opciones2 =="8":
                 print("Numero del hospital: 03548 42-5824")
-                volver=int(input("si quiere preguntar algo mas presione 9 :"))
-                if volver==9:
+                volver=(input("si quiere preguntar algo mas presione 9 :"))
+                if volver=="9":
                     continue
                 else:
                     print("Fin de la comersacion")
@@ -50,16 +50,16 @@ while True:
                 print("fin de la comersacion ")
                 break           
 
-        if Opciones== 3:
+        if Opciones== "3":
             print("en este link mostraremos los horarios de los doctore y que dia estan")
-            Opciones2=int(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
-            if Opciones2==7: 
+            Opciones2=(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
+            if Opciones2=="7": 
                 continue
             
-            if Opciones2 ==8:
+            if Opciones2 =="8":
                 print("Numero del hospital: 03548 42-5824")
-                volver=int(input("si quiere preguntar algo mas presione 9 :"))
-                if volver==9:
+                volver=(input("si quiere preguntar algo mas presione 9 :"))
+                if volver=="9":
                     continue
                 else:
                     print("Fin de la comersacion")
@@ -68,17 +68,17 @@ while True:
                 print("fin de la comersacion ")
                 break
         
-        if Opciones== 4:
+        if Opciones== "4":
             print("horari de atencion enn el hospital son  a las 6:00 hasta las 24:00")
-            Opciones2=int(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
-            if Opciones2==7: 
+            Opciones2=(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
+            if Opciones2=="7": 
                 print(Menu())
                 continue
             
-            if Opciones2 ==8:
+            if Opciones2 =="8":
                 print("Numero del hospital: 03548 42-5824")
-                volver=int(input("si quiere preguntar algo mas presione 9 :"))
-                if volver==9:
+                volver=(input("si quiere preguntar algo mas presione 9 :"))
+                if volver=="9":
                     continue
                 else:
                     print("Fin de la comersacion")
@@ -88,17 +88,17 @@ while True:
                 break
            
     
-        elif Opciones== 5:
+        elif Opciones== "5":
             print("Haceptamos obras sociales")
-            Opciones2=int(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
-            if Opciones2==7: 
+            Opciones2=(input("si quiere preguntar algo mas presione 7 o si  su respuesta no fue la informacion que esperavas, puedes comuicarte con el hospital de la falda tocando 8 :")) 
+            if Opciones2=="7": 
                 print(Menu())
                 continue
             
-            if Opciones2 ==8:
+            if Opciones2 =="8":
                 print("Numero del hospital: 03548 42-5824")
-                volver=int(input("si quiere preguntar algo mas presione 9 :"))
-                if volver==9:
+                volver=(input("si quiere preguntar algo mas presione 9 :"))
+                if volver=="9":
                     continue
                 else:
                     print("Fin de la comersacion")
@@ -109,8 +109,9 @@ while True:
 
         elif Opciones != Opciones:
             print("Esta opcion no esta en el menu porfavor eliga una de las opciones:")  
-            break
+            continue
 
         else:
             print("Numero del hospital: 03548 42-5824") 
-        break  
+        break 
+print("FIN") 
