@@ -1,4 +1,4 @@
-
+print("Hola bienvenido al chatbot como te puedo ayudar")
 def Menu():
     print("//////Menu//////") 
     print("1 Donde esta el hospital")
