@@ -1,55 +1,92 @@
-import tkinter as tk
-from tkinter import messagebox
+import mysql.connector
 
-def mostrar_menu():
-    menu_text = (
-        "//////Menu//////\n"
-        "1. Donde esta el hospital\n"
-        "2. Como puedo sacar un turno\n"
-        "3. Horarios de los doctores\n"
-        "4. Cuarta pregunta\n"
-        "5. Quinta pregunta\n"
-        "/// Si tus dudas no son estas, toque 6 para comunicarse con el número del hospital///"
+# Conectar a la base de datos
+def conectar():
+    return mysql.connector.connect(
+        host="3306",
+        user="root",
+        password="14@55ESo",
+        database="ejemplo1"
     )
-    messagebox.showinfo("Menu", menu_text)
 
-def procesar_opcion():
-    try:
-        opcion = int(entry_opcion.get())
-    except ValueError:
-        messagebox.showerror("Error", "Por favor, ingrese un número válido.")
-        return
+# Añadir un contacto
+def agregar_contacto(nombre, telefono, email):
+    conn = conectar()
+    cursor = conn.cursor()
+    sql = "INSERT INTO contactos (nombre, telefono, email) VALUES (%s, %s, %s)"
+    valores = (nombre, telefono, email)
+    cursor.execute(sql, valores)
+    conn.commit()
+    print(f"Contacto {nombre} añadido.")
+    cursor.close()
+    conn.close()
 
-    if opcion == 1:
-        respuesta = "Hospital Municipal La Falda, 13 de Diciembre 596, X5172 La Falda, Córdoba"
-    elif opcion == 2:
-        respuesta = "Puedes ingresar el siguiente link donde te explicarán cómo sacar un turno."
-    elif opcion == 3:
-        respuesta = "En este link mostraremos los horarios de los doctores y qué día están."
-    elif opcion == 4:
-        respuesta = "El horario de atención en el hospital es de 6:00 a 24:00."
-    elif opcion == 5:
-        respuesta = "Aceptamos obras sociales."
-    elif opcion == 6:
-        respuesta = "Número del hospital: 03548 42-5824"
-    else:
-        respuesta = "Esta opción no está en el menú. Por favor, elija una opción válida."
+# Listar todos los contactos
+def listar_contactos():
+    conn = conectar()
+    cursor = conn.cursor()
+    cursor.execute("SELECT * FROM contactos")
+    resultados = cursor.fetchall()
+    for contacto in resultados:
+        print(contacto)
+    cursor.close()
+    conn.close()
 
-    messagebox.showinfo("Respuesta", respuesta)
+# Actualizar un contacto
+def actualizar_contacto(id, nombre, telefono, email):
+    conn = conectar()
+    cursor = conn.cursor()
+    sql = "UPDATE contactos SET nombre = %s, telefono = %s, email = %s WHERE id = %s"
+    valores = (nombre, telefono, email, id)
+    cursor.execute(sql, valores)
+    conn.commit()
+    print(f"Contacto con ID {id} actualizado.")
+    cursor.close()
+    conn.close()
 
-root = tk.Tk()
-root.title("Menu de Hospital")
+# Eliminar un contacto
+def eliminar_contacto(id):
+    conn = conectar()
+    cursor = conn.cursor()
+    sql = "DELETE FROM contactos WHERE id = %s"
+    cursor.execute(sql, (id,))
+    conn.commit()
+    print(f"Contacto con ID {id} eliminado.")
+    cursor.close()
+    conn.close()
 
-label = tk.Label(root, text="Ingrese una opción del 1 al 6:")
-label.pack()
+# Menú de usuario
+def menu():
+    while True:
+        print("\nGestor de Contactos")
+        print("1. Añadir contacto")
+        print("2. Listar contactos")
+        print("3. Actualizar contacto")
+        print("4. Eliminar contacto")
+        print("5. Salir")
+        
+        eleccion = input("Elige una opción: ")
+        
+        if eleccion == '1':
+            nombre = input("Nombre: ")
+            telefono = input("Teléfono: ")
+            email = input("Email: ")
+            agregar_contacto(nombre, telefono, email)
+        elif eleccion == '2':
+            listar_contactos()
+        elif eleccion == '3':
+            id = int(input("ID del contacto a actualizar: "))
+            nombre = input("Nuevo nombre: ")
+            telefono = input("Nuevo teléfono: ")
+            email = input("Nuevo email: ")
+            actualizar_contacto(id, nombre, telefono, email)
+        elif eleccion == '4':
+            id = int(input("ID del contacto a eliminar: "))
+            eliminar_contacto(id)
+        elif eleccion == '5':
+            break
+        else:
+            print("Opción inválida, intenta de nuevo.")
 
-entry_opcion = tk.Entry(root)
-entry_opcion.pack()
-
-button_menu = tk.Button(root, text="Mostrar Menu", command=mostrar_menu)
-button_menu.pack()
-
-button_enviar = tk.Button(root, text="Enviar", command=procesar_opcion)
-button_enviar.pack()
-
-root.mainloop()
+if __name__ == "__main__":
+    menu()
