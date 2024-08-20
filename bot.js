@@ -1,127 +1,95 @@
-function Menu() {
-    console.log("//////Menu//////");
-    console.log("1 Donde esta el hospital");
-    console.log("2 como puedo sacar un turno");
-    console.log("3 horarios de los doctores");
-    console.log("4 cuarta pregunta");
-    console.log("5 quinta pregunta");
-    console.log("/// si tus dudas no son estas toque 6 para comunicarse atraves del numero del hospital///");
-}
+document.addEventListener('DOMContentLoaded', function() {
+    const menuDiv = document.getElementById('menu');
+    const respuestaDiv = document.getElementById('respuesta');
+    const opcionesDiv = document.getElementById('opciones');
 
-function ejecutarMenu(Opciones, Opciones2, volver) {
-    if (Opciones === "1") {
-        console.log("Hospital Municipal La Falda, 13 de Diciembre 596, X5172 La Falda, Córdoba");
-        if (Opciones2 === "7") {
-            Menu();
-            return "continuar";
-        }
-        if (Opciones2 === "8") {
-            console.log("Número del hospital: 03548 42-5824");
-            if (volver === "9") {
-                return "continuar";
-            } else {
-                console.log("Fin de la conversación");
-                return "fin";
-            }
+    // Muestra el menú principal
+    function mostrarMenu() {
+        const opciones = [
+            "1. ¿Dónde está el hospital?",
+            "2. ¿Cómo puedo sacar un turno?",
+            "3. Horarios de los doctores",
+            "4. Cuarta pregunta",
+            "5. Quinta pregunta",
+            "/// Si tus dudas no son estas, selecciona 6 para comunicarte a través del número del hospital ///"
+        ];
+        
+        menuDiv.innerHTML = opciones.map((opcion, index) => 
+            `<button onclick="procesarOpcion('${index + 1}')">${opcion}</button><br>`
+        ).join('');
+        respuestaDiv.innerHTML = '';
+        opcionesDiv.innerHTML = '';
+    }
+
+    // Procesa la opción seleccionada por el usuario
+    window.procesarOpcion = function(opcion) {
+        let resultado = manejarInteraccion(opcion, null);
+
+        respuestaDiv.innerHTML = resultado.mensaje;
+        opcionesDiv.innerHTML = resultado.opciones.length > 0
+            ? resultado.opciones.map(subOpcion => 
+                `<button onclick="manejarInteraccion('${opcion}', '${subOpcion.split(' ')[0]}')">${subOpcion}</button><br>`
+            ).join('') + `<button onclick="mostrarMenu()">Volver al Menú</button>`
+            : `<button onclick="mostrarMenu()">Volver al Menú</button>`;
+    }
+
+    // Maneja la interacción continua
+    window.manejarInteraccion = function(opcion, subOpcion) {
+        let resultado;
+
+        if (subOpcion === "7") {
+            resultado = { mensaje: mostrarMenu(), opciones: [] };
+        } else if (subOpcion === "8" || subOpcion === "9") {
+            resultado = { mensaje: "Número del hospital: 03548 42-5824", opciones: [] };
         } else {
-            console.log("Fin de la conversación");
-            return "fin";
+            resultado = procesarOpcion(opcion);
         }
+
+        respuestaDiv.innerHTML = resultado.mensaje;
+        opcionesDiv.innerHTML = resultado.opciones.length > 0
+            ? resultado.opciones.map(subOpcion => 
+                `<button onclick="manejarInteraccion('${opcion}', '${subOpcion.split(' ')[0]}')">${subOpcion}</button><br>`
+            ).join('') + `<button onclick="mostrarMenu()">Volver al Menú</button>`
+            : `<button onclick="mostrarMenu()">Volver al Menú</button>`;
     }
 
-    if (Opciones === "2") {
-        console.log("Puedes ingresar el siguiente link donde te van a explicar cómo sacar un turno.");
-        if (Opciones2 === "7") {
-            return "continuar";
+    // Procesa la opción seleccionada y devuelve la respuesta y opciones correspondientes
+    function procesarOpcion(opcion) {
+        let resultado = {};
+
+        switch(opcion) {
+            case "1":
+                resultado.mensaje = "Hospital Municipal La Falda, 13 de Diciembre 596, X5172 La Falda, Córdoba";
+                resultado.opciones = ["7. Preguntar algo más", "8. Comunicarte con el hospital"];
+                break;
+            case "2":
+                resultado.mensaje = "Puedes ingresar en el siguiente link donde te explicarán cómo sacar un turno.";
+                resultado.opciones = ["7. Preguntar algo más", "8. Comunicarte con el hospital"];
+                break;
+            case "3":
+                resultado.mensaje = "En este link mostraremos los horarios de los doctores y qué día están.";
+                resultado.opciones = ["7. Preguntar algo más", "8. Comunicarte con el hospital"];
+                break;
+            case "4":
+                resultado.mensaje = "El horario de atención en el hospital es de 6:00 a 24:00.";
+                resultado.opciones = ["7. Preguntar algo más", "8. Comunicarte con el hospital"];
+                break;
+            case "5":
+                resultado.mensaje = "Aceptamos obras sociales.";
+                resultado.opciones = ["7. Preguntar algo más", "8. Comunicarte con el hospital"];
+                break;
+            case "6":
+                resultado.mensaje = "Número del hospital: 03548 42-5824";
+                resultado.opciones = [];
+                break;
+            default:
+                resultado.mensaje = "Esta opción no está en el menú, por favor elija una de las opciones.";
+                resultado.opciones = [];
         }
-        if (Opciones2 === "8") {
-            console.log("Número del hospital: 03548 42-5824");
-            if (volver === "9") {
-                return "continuar";
-            } else {
-                console.log("Fin de la conversación");
-                return "fin";
-            }
-        } else {
-            console.log("Fin de la conversación");
-            return "fin";
-        }
+
+        return resultado;
     }
 
-    if (Opciones === "3") {
-        console.log("En este link mostraremos los horarios de los doctores y qué día están.");
-        if (Opciones2 === "7") {
-            return "continuar";
-        }
-        if (Opciones2 === "8") {
-            console.log("Número del hospital: 03548 42-5824");
-            if (volver === "9") {
-                return "continuar";
-            } else {
-                console.log("Fin de la conversación");
-                return "fin";
-            }
-        } else {
-            console.log("Fin de la conversación");
-            return "fin";
-        }
-    }
+    mostrarMenu();
+});
 
-    if (Opciones === "4") {
-        console.log("Horario de atención en el hospital son 6:00 hasta las 24:00");
-        if (Opciones2 === "7") {
-            Menu();
-            return "continuar";
-        }
-        if (Opciones2 === "8") {
-            console.log("Número del hospital: 03548 42-5824");
-            if (volver === "9") {
-                return "continuar";
-            } else {
-                console.log("Fin de la conversación");
-                return "fin";
-            }
-        } else {
-            console.log("Fin de la conversación");
-            return "fin";
-        }
-    }
-
-    if (Opciones === "5") {
-        console.log("Aceptamos obras sociales");
-        if (Opciones2 === "7") {
-            Menu();
-            return "continuar";
-        }
-        if (Opciones2 === "8") {
-            console.log("Número del hospital: 03548 42-5824");
-            if (volver === "9") {
-                return "continuar";
-            } else {
-                console.log("Fin de la conversación");
-                return "fin";
-            }
-        } else {
-            console.log("Fin de la conversación");
-            return "fin";
-        }
-    }
-
-    if (!["1", "2", "3", "4", "5"].includes(Opciones)) {
-        console.log("Esta opción no está en el menú, por favor elige una de las opciones:");
-        return "continuar";
-    } else {
-        console.log("Número del hospital: 03548 42-5824");
-        return "fin";
-    }
-}
-
-Menu();
-
-// Ejemplo de cómo podrías llamar la función con valores predefinidos
-let resultado;
-do {
-    resultado = ejecutarMenu("1", "7", "9");
-} while (resultado === "continuar");
-
-console.log("FIN");
