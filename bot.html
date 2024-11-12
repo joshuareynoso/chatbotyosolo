@@ -4,28 +4,44 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chatbot Hospital</title>
-    <link rel="stylesheet" href="css\styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    
 </head>
-<body>
-    <div id="chat-container">
-        <p id="welcome-message">Hola, bienvenido al chatbot. ¿Cómo te puedo ayudar?</p>
-        <button id="openMenuButton">Abrir Menú</button>
+        <header>
+            <h1 id="tituloPrincipal">PREGUNTAS FRECUENTES</h1>
+        </header>
+    
+        <main>
+            <section class="diseño">
+                <div class="encabezado"></div>
+                <div class="ladoIzquierdo">
+                    <img id="imagenCelular" src="imagenes/contacto.png" alt="celular" height="500px" width="250px">
+                </div>
 
-        <div id="menu" class="hidden">
-            <p>////// Menú //////</p>
-            <button class="menu-option" data-option="1">1. ¿Dónde está el hospital?</button>
-            <button class="menu-option" data-option="2">2. ¿Cómo puedo sacar un turno?</button>
-            <button class="menu-option" data-option="3">3. Horarios de los doctores</button>
-            <button class="menu-option" data-option="4">4. Pregunta 4</button>
-            <button class="menu-option" data-option="5">5. Pregunta 5</button>
-            <p>/// Si tus dudas no son estas, selecciona 6 para comunicarte con el hospital ///</p>
-        </div>
+            <div id="chat-container">
+                <div id="chat-box">
+                    <p id="welcome-message" class="bot-message">Hola, bienvenido al chatbot. ¿Cómo te puedo ayudar?</p>
+                </div>
 
-        <div id="response" class="hidden"></div>
+                <button id="openMenuButton" class="start-button">Abrir Menú</button>
 
-        <button id="cierredelmenu" class="hidden">Cerrar Menú</button>
-    </div>
-
-    <script src="js\script.js"></script>
+                <div id="menu" class="hidden">
+                    <p class="menu-title">////// Menú //////</p>
+                    <button class="menu-option" data-option="1">1. ¿Dónde está el hospital?</button>
+                    <button class="menu-option" data-option="2">2. ¿Cómo puedo sacar un turno?</button>
+                    <button class="menu-option" data-option="3">3. Horarios de los doctores</button>
+                    <button class="menu-option" data-option="4">4. Horario de atención</button>
+                    <button class="menu-option" data-option="5">5. Obras sociales</button>
+                    <button id="cierredelmenu" class="close-button hidden">Cerrar Menú</button>
+                </div>
+                <div id="response" class="hidden"></div>
+            </div>    
+    </main>    
+    <footer>
+                
+    </footer>
+        <script src="js/script.js"></script>
 </body>
 </html>
