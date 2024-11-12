@@ -1,61 +1,79 @@
 const botondeinicidelmenu = document.getElementById('openMenuButton');
 const menu = document.getElementById('menu');
-const response = document.getElementById('response');
-const cierredelmenu = document.getElementById('cierredelmenu');
+const chatMessages = document.getElementById('chat-messages');
 const menuOptions = document.querySelectorAll('.menu-option');
-const chatBox = document.getElementById('chat-box');
+const helpButton = document.getElementById('helpButton');
+const endConversationButton = document.getElementById('endConversationButton');
 
 botondeinicidelmenu.addEventListener('click', () => {
     menu.classList.remove('hidden');
-    botondeinicidelmenu.classList.add('hidden');
-    response.classList.add('hidden');
+    endConversationButton.classList.remove('hidden');
 });
 
 menuOptions.forEach(option => {
     option.addEventListener('click', (e) => {
         const selectedOption = e.target.getAttribute('data-option');
-        menu.classList.add('hidden'); 
-        cierredelmenu.classList.remove('hidden');
-        addMessage("user", e.target.innerText);
+        menu.classList.add('hidden');
+        addUserMessage(e.target.innerText);
         showResponse(selectedOption);
     });
 });
 
+helpButton.addEventListener('click', () => {
+    menu.classList.add('hidden');
+    addUserMessage("Ayuda");
+    addBotMessage("Si necesitas ayuda, por favor selecciona una de las opciones del menú o comunícate con nosotros al 03548 42-5824.");
+});
+
+endConversationButton.addEventListener('click', () => {
+    addBotMessage("Gracias por usar el chatbot. ¡Hasta luego!");
+    resetChat();
+});
+
+function addUserMessage(text) {
+    const messageBubble = document.createElement('div');
+    messageBubble.classList.add('message-bubble', 'user-message');
+    messageBubble.innerText = text;
+    chatMessages.appendChild(messageBubble);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function addBotMessage(text) {
+    const messageBubble = document.createElement('div');
+    messageBubble.classList.add('message-bubble', 'bot-message');
+    messageBubble.innerHTML = text;
+    chatMessages.appendChild(messageBubble);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
 function showResponse(option) {
-    let botReply = "";
+    let responseText = "";
     switch (option) {
         case '1':
-            botReply = "Hospital Municipal La Falda, 13 de Diciembre 596, X5172 La Falda, Córdoba.";
+            responseText = "El hospital está ubicado en 13 de Diciembre 596, La Falda, Córdoba.";
             break;
         case '2':
-            botReply = "Puedes ingresar en el siguiente link donde te explican cómo sacar un turno.";
+            responseText = "Puedes ingresar en el siguiente link donde te explican cómo sacar un turno.";
             break;
         case '3':
-            botReply = "Aquí se mostrarán los horarios de los doctores y qué días están.";
+            responseText = "Aquí se mostrarán los horarios de los doctores y qué días están.";
             break;
         case '4':
-            botReply = "Horario de atención en el hospital es de 6:00 a 24:00.";
+            responseText = "El horario de atención en el hospital es de 6:00 a 24:00.";
             break;
         case '5':
-            botReply = "Aceptamos todas las obras sociales.";
+            responseText = "Aceptamos todas las obras sociales.";
             break;
         default:
-            botReply = "Esta opción no está en el menú. Comunícate con el hospital: 03548 42-5824";
+            responseText = "Esta opción no está en el menú. Comunícate con el hospital: 03548 42-5824";
             break;
     }
-    addMessage("bot", botReply);
+    addBotMessage(responseText);
 }
 
-function addMessage(sender, text) {
-    const message = document.createElement('p');
-    message.classList.add(sender === "bot" ? "bot-message" : "user-message");
-    message.textContent = text;
-    chatBox.appendChild(message);
-    chatBox.scrollTop = chatBox.scrollHeight;
-}
-
-cierredelmenu.addEventListener('click', () => {
-    addMessage("bot", "Fin de la conversación.");
-    cierredelmenu.classList.add('hidden');
+function resetChat() {
+    chatMessages.innerHTML = "";
+    menu.classList.add('hidden');
+    endConversationButton.classList.add('hidden');
     botondeinicidelmenu.classList.remove('hidden');
-});
+}
